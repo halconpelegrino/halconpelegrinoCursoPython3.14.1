@@ -60,3 +60,4 @@ EOF
 
 # 7. Crear requirements.txt correctamente desde el venv
 pip freeze > requirements.txt
+curso/
