@@ -1,0 +1,62 @@
+# 1. Crear .gitignore
+cat > .gitignore <<'EOF'
+curso/
+__pycache__/
+*.pyc
+.env
+EOF
+
+# 2. Crear carpeta .vscode
+mkdir -p .vscode
+
+# 3. settings.json para forzar el intérprete del venv y formateo
+cat > .vscode/settings.json <<'EOF'
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/curso/bin/python",
+  "python.formatting.provider": "black",
+  "editor.formatOnSave": true,
+  "python.linting.enabled": true,
+  "python.linting.ruffEnabled": true
+}
+EOF
+
+# 4. launch.json para depuración básica
+cat > .vscode/launch.json <<'EOF'
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Archivo actual",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    }
+  ]
+}
+EOF
+
+# 5. extensions.json con recomendaciones
+cat > .vscode/extensions.json <<'EOF'
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "charliermarsh.ruff",
+    "ms-python.black-formatter",
+    "vscode-icons-team.vscode-icons"
+  ]
+}
+EOF
+
+# 6. Crear un main.py de ejemplo
+cat > main.py <<'EOF'
+def saludo(nombre):
+    return f"Hola, {nombre} desde VS Code"
+
+if __name__ == "__main__":
+    print(saludo("halconpelegrino"))
+EOF
+
+# 7. Crear requirements.txt correctamente desde el venv
+pip freeze > requirements.txt

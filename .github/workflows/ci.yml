@@ -1,0 +1,25 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.14'
+      - name: Install
+        run: |
+          python -m venv curso
+          source curso/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Lint
+        run: |
+          source curso/bin/activate
+          curso/bin/ruff check .
+      - name: Test
+        run: |
+          source curso/bin/activate
+          curso/bin/pytest -q
