@@ -1,4 +1,6 @@
 # Ejercicio_Curso
+![CI](https://github.com/halconpelegrino/halconpelegrinoCursoPython3.14.1/actions/workflows/ci.yml/badge.svg)
+
 
 Entorno virtual: `curso`
 
