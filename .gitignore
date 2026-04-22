@@ -62,3 +62,4 @@ EOF
 pip freeze > requirements.txt
 curso/
 curso/
+ejercicios/
