@@ -1,6 +1,15 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLayout, QLineEdit
-from PyQt5.QtCore import Qt
 import sys
+
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (
+    QApplication,
+    QLabel,
+    QLineEdit,
+    QPushButton,
+    QVBoxLayout,
+    QWidget,
+)
+
 
 def main():
     app = QApplication(sys.argv)
@@ -17,6 +26,8 @@ def main():
     def saludar():
         nombre = name_input.text().strip() or "amigo"
         label.setText(f"Hola, {nombre} — ¡bienvenido a PyQt5!")
+        name_input.clear()
+        name_input.setFocus()
 
     button = QPushButton("Saludar")
     button.clicked.connect(saludar)
@@ -32,7 +43,12 @@ def main():
     window.setLayout(layout)
 
     window.show()
-    sys.exit(app.exec_())
+    try:
+        return_code = app.exec_()
+    except AttributeError:
+        return_code = app.exec()
+    sys.exit(return_code)
+
 
 if __name__ == "__main__":
     main()
